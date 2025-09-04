@@ -1,4 +1,4 @@
-name: Laravel FTP Deployment
+name: Laravel Vendor & Env Deploy
 
 on:
   push:
@@ -31,32 +31,11 @@ jobs:
       - name: Install Composer dependencies
         run: php -d memory_limit=-1 /usr/local/bin/composer install --no-dev --optimize-autoloader
 
-      # 5️⃣ Setup Node.js and build assets
-      - name: Setup Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: '20'
+      # 5️⃣ Prepare .env
+      - name: Copy .env
+        run: cp .env.example .env || echo ".env already exists"
 
-      - name: Build frontend assets
-        run: |
-          npm install
-          npm run build   # اگر اسکریپت build ندارید، npm run prod بگذارید
-
-      # 6️⃣ Prepare .env and app key
-      - name: Prepare .env
-        run: cp .env.example .env
-
-      - name: Generate app key
-        run: php artisan key:generate
-
-      # 7️⃣ Optimize Laravel
-      - name: Optimize Laravel
-        run: |
-          php artisan config:cache
-          php artisan route:cache
-          php artisan view:cache
-
-      # 8️⃣ Deploy via FTP
+      # 6️⃣ Deploy vendor, composer.json, composer.lock and .env via FTP
       - name: Deploy to FTP
         uses: SamKirkland/FTP-Deploy-Action@v4.3.4
         with:
@@ -64,15 +43,19 @@ jobs:
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
           port: 21
-          local-dir: ./
-          server-dir: /padidehbaran/
-          timeout: 190000
+          local-dir: ./              # کل پروژه
+          server-dir: /               # مسیر اصلی روی FTP
+          security: loose
+          timeout: 1800
           exclude: |
             node_modules/
             tests/
             .github/
             .git/
             .gitignore
-            storage/logs/
+            storage/
             app/
-            database/
+            routes/
+            resources/
+            bootstrap/
+            public/                  # اگر فایل‌های Frontend را نمیخوای آپلود شوند
