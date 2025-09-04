@@ -4,10 +4,13 @@ deployment:
     - export DEPLOY_DIR=/home/h330619/padidehbaran
     - cd $DEPLOY_DIR
 
-    # نصب Composer
+    # اطمینان از اینکه فایل .env وجود داره
+    - if [ ! -f ".env" ]; then cp .env.example .env; fi
+
+    # نصب Composer و کتابخانه‌ها
     - /usr/local/bin/composer install --no-dev --prefer-dist --no-interaction --optimize-autoloader
 
-    # اجرای Migration
+    # اجرای Migration بدون پرسش
     - php artisan migrate --force
 
     # ایجاد Storage Link
@@ -18,5 +21,8 @@ deployment:
     - php artisan route:cache
     - php artisan view:cache
 
-    # دسترسی‌ها
+    # دسترسی‌ها برای storage و bootstrap/cache
     - chmod -R 775 storage bootstrap/cache || true
+
+    # اختیاری: پاک کردن cache قدیمی اگر لازم باشه
+    - php artisan cache:clear

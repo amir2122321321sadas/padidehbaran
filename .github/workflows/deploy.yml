@@ -1,37 +1,58 @@
-name: Deploy Laravel to cPanel
+name: Laravel FTP Deployment
 
 on:
   push:
     branches:
-      - main
+      - main   # هر بار Push روی main اجرا شود
 
 jobs:
-  ftp-deploy:
+  deploy:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout code
+      # 1️⃣ گرفتن کدها
+      - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Sync files via FTP
-        uses: SamKirkland/FTP-Deploy-Action@master
+      # 2️⃣ نصب PHP و اکستنشن‌ها
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
         with:
-          server: ${{ secrets.FTP_HOST }}
-          username: ${{ secrets.FTP_USERNAME }}
-          password: ${{ secrets.FTP_PASSWORD }}
-          local-dir: ./
-          server-dir: /public_html/laravel
-          git-ftp-args: --insecure
+          php-version: '8.1'  # نسخه PHP مناسب پروژه
+          extensions: mbstring, bcmath, intl, pdo_mysql, tokenizer, xml
 
-      - name: Run artisan commands
-        uses: appleboy/ssh-action@master
+      # 3️⃣ نصب Composer و پکیج‌ها
+      - name: Install Composer dependencies
+        run: composer install --no-dev --optimize-autoloader
+
+      # 4️⃣ نصب Node.js و build assets (اگر داری)
+      - name: Build frontend assets
+        run: |
+          npm install
+          npm run prod
+
+      # 5️⃣ ایجاد فایل env
+      - name: Prepare .env
+        run: cp .env.example .env
+
+      # 6️⃣ تولید Laravel key
+      - name: Generate app key
+        run: php artisan key:generate
+
+      # 7️⃣ پاکسازی و cache کردن Laravel
+      - name: Optimize Laravel
+        run: |
+          php artisan config:cache
+          php artisan route:cache
+          php artisan view:cache
+
+      # 8️⃣ آپلود همه فایل‌ها روی هاست از طریق FTP
+      - name: Deploy to FTP
+        uses: SamKirkland/FTP-Deploy-Action@v5
         with:
-          host: ${{ secrets.FTP_HOST }}
+          server: ftp.yourdomain.com
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-          script: |
-            cd /home/username/public_html/laravel
-            php artisan migrate --force
-            php artisan storage:link --force
-            php artisan config:cache
-            php artisan route:cache
-            php artisan view:cache
+          local-dir: ./           # کل پروژه لاراول آماده شده
+          server-dir: /public_html/yourproject/
+          git-ftp-args: --insecure
