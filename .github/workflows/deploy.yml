@@ -48,7 +48,8 @@ jobs:
           server-dir: /vendor/
           security: loose
           timeout: 1800000
-          state-name: .ftp-deploy-sync-vendor.json   # ✅ وضعیت vendor ذخیره میشه
+
+
 
       # 7️⃣ Deploy composer.json, composer.lock and .env separately
       - name: Deploy composer.json, composer.lock and .env
@@ -63,7 +64,6 @@ jobs:
           server-dir: /
           security: loose
           timeout: 1800000
-          state-name: .ftp-deploy-sync-root.json     # ✅ وضعیت این بخش هم ذخیره میشه
           exclude: |
             app/
             bootstrap/
