@@ -67,7 +67,6 @@ jobs:
           local-dir: ./
           server-dir: /padidehbaran/
           security: loose
-          timeout: 1800
           exclude: |
             node_modules/
             tests/
