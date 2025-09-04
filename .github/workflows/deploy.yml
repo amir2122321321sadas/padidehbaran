@@ -62,7 +62,7 @@ jobs:
           local-dir: ./
           server-dir: /padidehbaran/
           security: loose
-          timeout: 1800000
+          timeout: 1900000
           exclude: |
             app/
             bootstrap/
