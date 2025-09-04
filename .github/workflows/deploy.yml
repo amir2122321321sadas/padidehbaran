@@ -44,7 +44,7 @@ jobs:
           password: ${{ secrets.FTP_PASSWORD }}
           port: 21
           local-dir: ./              # کل پروژه
-          server-dir: /               # مسیر اصلی روی FTP
+          server-dir: /padidehbaran/               # مسیر اصلی روی FTP
           security: loose
           timeout: 190000
           exclude: |
