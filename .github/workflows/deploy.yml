@@ -47,7 +47,7 @@ jobs:
           local-dir: ./vendor/
           server-dir: /vendor/
           security: loose
-          timeout: 1800
+          timeout: 190000
 
       # 7️⃣ Deploy composer.json, composer.lock and .env separately
       - name: Deploy composer.json, composer.lock and .env
@@ -61,7 +61,7 @@ jobs:
           local-dir: ./
           server-dir: /
           security: loose
-          timeout: 600
+          timeout: 190000
           exclude: |
             app/
             bootstrap/
