@@ -1,4 +1,4 @@
-name: Laravel Minimal Deploy
+name: Laravel FTPS Minimal Deploy
 
 on:
   push:
@@ -10,8 +10,8 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # 1️⃣ Checkout repository
-      - name: Checkout code
+      # 1️⃣ Checkout code
+      - name: Checkout repository
         uses: actions/checkout@v3
 
       # 2️⃣ Setup PHP
@@ -35,14 +35,15 @@ jobs:
       - name: Copy .env
         run: cp .env.example .env || echo ".env already exists"
 
-      # 6️⃣ Deploy vendor folder via FTP
-      - name: Deploy vendor to FTP
+      # 6️⃣ Deploy vendor folder via FTPS
+      - name: Deploy vendor to FTPS
         uses: SamKirkland/FTP-Deploy-Action@v4.3.4
         with:
           server: ftp.padidehbaran.ir
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
           port: 21
+          protocol: ftps
           local-dir: ./vendor/
           server-dir: /vendor/
           security: loose
@@ -56,10 +57,11 @@ jobs:
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
           port: 21
+          protocol: ftps
           local-dir: ./
           server-dir: /
           security: loose
-          timeout: 190000
+          timeout: 600
           exclude: |
             app/
             bootstrap/
