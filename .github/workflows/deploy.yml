@@ -33,7 +33,7 @@ jobs:
           protocol: ftp
           security: loose
           local-dir: ./
-          server-dir: /
+          server-dir: /padidehbaran/
           timeout: 300000
           exclude: |
              **/app/**
