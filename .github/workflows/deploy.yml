@@ -46,7 +46,7 @@ jobs:
           local-dir: ./              # کل پروژه
           server-dir: /               # مسیر اصلی روی FTP
           security: loose
-          timeout: 1800
+          timeout: 190000
           exclude: |
             node_modules/
             tests/
