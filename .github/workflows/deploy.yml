@@ -33,15 +33,16 @@ jobs:
             echo ".env created from .env.example"
           else
             echo ".env already exists"
-          fi
 
       # 5️⃣ Generate APP_KEY
       - name: Generate APP_KEY
         run: php artisan key:generate --force
 
-      # 6️⃣ Storage Link
-      - name: Storage Link
-        run: php artisan storage:link
+      # 6️⃣ Copy storage contents to public/storage
+      - name: Prepare storage for public
+        run: |
+          mkdir -p public/storage
+          rsync -a storage/app/public/ public/storage/
 
       # 7️⃣ Optimize Laravel
       - name: Optimize Laravel
@@ -69,10 +70,8 @@ jobs:
             **/config/**
             **/database/**
             **/node_modules/**
-            **/public/**
             **/resources/**
             **/routes/**
-            **/storage/**
             **/tests/**
             **/.github/**
             **/.git/**
