@@ -1,4 +1,4 @@
-name: Laravel Vendor & Env Deploy
+name: Laravel Minimal Deploy
 
 on:
   push:
@@ -31,31 +31,46 @@ jobs:
       - name: Install Composer dependencies
         run: php -d memory_limit=-1 /usr/local/bin/composer install --no-dev --optimize-autoloader
 
-      # 5️⃣ Prepare .env
+      # 5️⃣ Prepare .env if it doesn't exist
       - name: Copy .env
         run: cp .env.example .env || echo ".env already exists"
 
-      # 6️⃣ Deploy vendor, composer.json, composer.lock and .env via FTP
-      - name: Deploy to FTP
+      # 6️⃣ Deploy vendor folder via FTP
+      - name: Deploy vendor to FTP
         uses: SamKirkland/FTP-Deploy-Action@v4.3.4
         with:
           server: ftp.padidehbaran.ir
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
           port: 21
-          local-dir: ./              # کل پروژه
-          server-dir: /padidehbaran/               # مسیر اصلی روی FTP
+          local-dir: ./vendor/
+          server-dir: /vendor/
+          security: loose
+          timeout: 1800
+
+      # 7️⃣ Deploy composer.json, composer.lock and .env separately
+      - name: Deploy composer.json, composer.lock and .env
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+        with:
+          server: ftp.padidehbaran.ir
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          port: 21
+          local-dir: ./
+          server-dir: /padidehbaran/
           security: loose
           timeout: 190000
           exclude: |
+            app/
+            bootstrap/
+            config/
+            database/
             node_modules/
+            public/
+            resources/
+            routes/
+            storage/
             tests/
             .github/
             .git/
-            .gitignore
-            storage/
-            app/
-            routes/
-            resources/
-            bootstrap/
-            public/                  # اگر فایل‌های Frontend را نمیخوای آپلود شوند
+            vendor/
