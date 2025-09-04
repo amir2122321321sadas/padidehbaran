@@ -1,4 +1,5 @@
-name: Laravel Minimal FTPS Deploy
+
+name: Laravel Minimal FTP Deploy
 
 on:
   push:
@@ -10,59 +11,30 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # 1️⃣ Checkout code
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      # 2️⃣ Setup PHP
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
           php-version: '8.2'
           extensions: mbstring, bcmath, intl, pdo_mysql, tokenizer, xml, curl, openssl
 
-      # 3️⃣ Install Composer
-      - name: Install Composer
-        run: |
-          curl -sS https://getcomposer.org/installer | php
-          sudo mv composer.phar /usr/local/bin/composer
-
-      # 4️⃣ Install Composer dependencies
       - name: Install Composer dependencies
-        run: php -d memory_limit=-1 /usr/local/bin/composer install --no-dev --optimize-autoloader
+        run: composer install --no-dev --optimize-autoloader
 
-      # 5️⃣ Prepare .env if it doesn't exist
-      - name: Copy .env
-        run: cp .env.example .env || echo ".env already exists"
-
-      # 6️⃣ Generate Laravel app key
-      - name: Generate App Key
-        run: php artisan key:generate --force
-
-      - name: Storage Link
-        run: |
-          php artisan storage:link
-
-      # 7️⃣ Optimize Laravel
-      - name: Optimize Laravel
-        run: |
-          php artisan config:cache
-          php artisan route:cache
-          php artisan view:cache
-
-      # 8️⃣ Deploy only essential files to FTPS
-      - name: Deploy essential files to FTPS
+      - name: Deploy to FTP (passive)
         uses: SamKirkland/FTP-Deploy-Action@v4.3.4
         with:
           server: ftp.padidehbaran.ir
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
           port: 21
-          protocol: ftps
-          local-dir: ./
-          server-dir: /padidehbaran/
+          protocol: ftp
           security: loose
-          timeout: 1900000
+          local-dir: ./
+          server-dir: /home/h330619/padidehbaran/
+          timeout: 300000
           exclude: |
              **/app/**
              **/bootstrap/**
@@ -77,3 +49,4 @@ jobs:
              **/.github/**
              **/.git/**
              **/vendor/**
+
