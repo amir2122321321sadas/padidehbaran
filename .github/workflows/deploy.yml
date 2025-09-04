@@ -57,7 +57,7 @@ jobs:
           password: ${{ secrets.FTP_PASSWORD }}
           port: 21
           local-dir: ./
-          server-dir: /padidehbaran/
+          server-dir: /
           security: loose
           timeout: 190000
           exclude: |
