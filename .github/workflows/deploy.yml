@@ -3,35 +3,35 @@ name: Laravel FTP Deployment
 on:
   push:
     branches:
-      - main   # هر بار Push روی main اجرا شود
+      - main
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
 
     steps:
-      # 1️⃣ گرفتن کدها
-      - name: Checkout repository
+      # 1️⃣ Checkout repository
+      - name: Checkout code
         uses: actions/checkout@v3
 
-      # 2️⃣ نصب PHP و اکستنشن‌ها
+      # 2️⃣ Setup PHP 8.2
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
           php-version: '8.2'
           extensions: mbstring, bcmath, intl, pdo_mysql, tokenizer, xml, curl, openssl
 
-      # 3️⃣ نصب Composer
+      # 3️⃣ Install Composer
       - name: Get Composer
         run: |
           curl -sS https://getcomposer.org/installer | php
           sudo mv composer.phar /usr/local/bin/composer
 
-      # 4️⃣ نصب پکیج‌های Composer با حافظه نامحدود
+      # 4️⃣ Install Composer dependencies
       - name: Install Composer dependencies
         run: php -d memory_limit=-1 /usr/local/bin/composer install --no-dev --optimize-autoloader
 
-      # 5️⃣ نصب Node.js و build frontend assets
+      # 5️⃣ Setup Node.js and build assets
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
@@ -41,34 +41,34 @@ jobs:
           npm install
           npm run build
 
-      # 6️⃣ ایجاد فایل .env
+      # 6️⃣ Prepare .env and app key
       - name: Prepare .env
         run: cp .env.example .env
-
-      # 7️⃣ تولید Laravel APP_KEY
       - name: Generate app key
         run: php artisan key:generate
 
-      # 8️⃣ پاکسازی و cache کردن Laravel
+      # 7️⃣ Optimize Laravel
       - name: Optimize Laravel
         run: |
           php artisan config:cache
           php artisan route:cache
           php artisan view:cache
 
-      # 9️⃣ آپلود همه فایل‌ها روی هاست از طریق FTP
+      # 8️⃣ Deploy to FTP (بهینه شده)
       - name: Deploy to FTP
         uses: SamKirkland/FTP-Deploy-Action@v4.3.4
         with:
           server: ftp.padidehbaran.ir
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-          local-dir: ./
+          local-dir: ./           # کل پروژه آماده شده
           server-dir: /padidehbaran/
           security: loose
+          timeout: 900            # افزایش Timeout به 15 دقیقه
           exclude: |
             node_modules/
             tests/
             .github/
             .git/
             .gitignore
+            storage/logs/
