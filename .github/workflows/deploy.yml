@@ -1,9 +1,9 @@
-name: Laravel SFTP Deployment
+name: Laravel FTP Deployment
 
 on:
   push:
     branches:
-      - main
+      - main   # هر بار Push روی main اجرا شود
 
 jobs:
   deploy:
@@ -22,7 +22,7 @@ jobs:
           extensions: mbstring, bcmath, intl, pdo_mysql, tokenizer, xml, curl, openssl
 
       # 3️⃣ Install Composer
-      - name: Get Composer
+      - name: Install Composer
         run: |
           curl -sS https://getcomposer.org/installer | php
           sudo mv composer.phar /usr/local/bin/composer
@@ -39,7 +39,7 @@ jobs:
       - name: Build frontend assets
         run: |
           npm install
-          npm run build
+          npm run build   # ⚠️ اگر اسکریپت build ندارید، این را با npm run prod تغییر بده
 
       # 6️⃣ Prepare .env and app key
       - name: Prepare .env
@@ -54,16 +54,22 @@ jobs:
           php artisan route:cache
           php artisan view:cache
 
-      # 8️⃣ Deploy via SFTP
-      - name: Deploy to SFTP
-        uses: appleboy/scp-action@master
+      # 8️⃣ Deploy via FTP
+      - name: Deploy to FTP
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
         with:
-          host: ftp.padidehbaran.ir           # هاست SFTP
-          username: ${{ secrets.SFTP_USERNAME }}
-          password: ${{ secrets.SFTP_PASSWORD }}
-          port: 22                             # معمولاً 22 برای SFTP
-          source: "./"                         # کل پروژه آماده شده
-          target: "/padidehbaran/"             # مسیر روی هاست
-          rm: true                             # حذف فایل‌های قبلی قبل از آپلود
-          recursive: true                      # پوشه‌ها هم آپلود بشن
-          strip_components: 0
+          server: ftp.padidehbaran.ir
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          port: 21
+          local-dir: ./                  # کل پروژه آماده شده
+          server-dir: /padidehbaran/     # مسیر روی هاست (حتماً / آخر داشته باشه)
+          security: loose
+          timeout: 1800                  # 30 دقیقه
+          exclude: |
+            node_modules/
+            tests/
+            .github/
+            .git/
+            .gitignore
+            storage/logs/
