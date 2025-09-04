@@ -50,9 +50,9 @@ jobs:
       - name: Deploy to FTP
         uses: SamKirkland/FTP-Deploy-Action@v5
         with:
-          server: ftp.yourdomain.com
+          server: ftp.padidehbaran.ir
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
           local-dir: ./           # کل پروژه لاراول آماده شده
-          server-dir: /public_html/yourproject/
+          server-dir: /padidehbaran
           git-ftp-args: --insecure
