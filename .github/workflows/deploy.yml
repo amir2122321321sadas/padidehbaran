@@ -3,7 +3,7 @@ name: Laravel FTP Deployment
 on:
   push:
     branches:
-      - main   # هر بار Push روی main اجرا شود
+      - main
 
 jobs:
   deploy:
@@ -14,7 +14,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      # 2️⃣ Setup PHP 8.2
+      # 2️⃣ Setup PHP
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
@@ -36,14 +36,16 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: '20'
+
       - name: Build frontend assets
         run: |
           npm install
-          npm run build   # ⚠️ اگر اسکریپت build ندارید، این را با npm run prod تغییر بده
+          npm run build   # اگر اسکریپت build ندارید، npm run prod بگذارید
 
       # 6️⃣ Prepare .env and app key
       - name: Prepare .env
         run: cp .env.example .env
+
       - name: Generate app key
         run: php artisan key:generate
 
@@ -62,10 +64,10 @@ jobs:
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
           port: 21
-          local-dir: ./                  # کل پروژه آماده شده
-          server-dir: /padidehbaran/     # مسیر روی هاست (حتماً / آخر داشته باشه)
+          local-dir: ./
+          server-dir: /padidehbaran/
           security: loose
-          timeout: 1800                  # 30 دقیقه
+          timeout: 1800
           exclude: |
             node_modules/
             tests/
