@@ -25,22 +25,36 @@ jobs:
       - name: Install Composer dependencies
         run: composer install --no-dev --optimize-autoloader
 
-      # 4️⃣ Optimize Laravel (cache views, config, routes)
+      # 4️⃣ Prepare .env if it doesn't exist
+      - name: Prepare .env
+        run: |
+          if [ ! -f .env ]; then
+            cp .env.example .env
+            echo ".env created from .env.example"
+          else
+            echo ".env already exists"
+          fi
+
+      # 5️⃣ Generate APP_KEY
+      - name: Generate APP_KEY
+        run: php artisan key:generate --force
+
+      # 6️⃣ Storage Link
+      - name: Storage Link
+        run: php artisan storage:link
+
+      # 7️⃣ Optimize Laravel
       - name: Optimize Laravel
         run: |
           php artisan config:cache
           php artisan route:cache
           php artisan view:cache
 
-      # 5️⃣ Storage Link
-      - name: Storage Link
-        run: php artisan storage:link
-
-      # 6️⃣ Deploy to FTP
+      # 8️⃣ Deploy to FTP
       - name: Deploy to FTP
         uses: SamKirkland/FTP-Deploy-Action@v4.3.4
         with:
-          server: ftp.padidehbaran.ir
+          server: ${{ secrets.FTP_HOST }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
           port: 21
