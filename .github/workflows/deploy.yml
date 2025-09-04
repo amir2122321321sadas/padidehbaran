@@ -39,7 +39,7 @@ jobs:
       - name: Build frontend assets
         run: |
           npm install
-          npm run prod
+          npm run build
 
       # 6️⃣ ایجاد فایل .env
       - name: Prepare .env
