@@ -48,7 +48,7 @@ jobs:
 
       # 8️⃣ آپلود همه فایل‌ها روی هاست از طریق FTP
       - name: Deploy to FTP
-        uses: SamKirkland/FTP-Deploy-Action@v4
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
         with:
           server: ftp.padidehbaran.ir
           username: ${{ secrets.FTP_USERNAME }}
