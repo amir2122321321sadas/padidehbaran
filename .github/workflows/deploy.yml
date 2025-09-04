@@ -18,35 +18,45 @@ jobs:
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: '8.1'  # نسخه PHP مناسب پروژه
-          extensions: mbstring, bcmath, intl, pdo_mysql, tokenizer, xml
+          php-version: '8.1'
+          extensions: mbstring, bcmath, intl, pdo_mysql, tokenizer, xml, curl, openssl
 
-      # 3️⃣ نصب Composer و پکیج‌ها
+      # 3️⃣ نصب Composer
+      - name: Get Composer
+        run: |
+          curl -sS https://getcomposer.org/installer | php
+          sudo mv composer.phar /usr/local/bin/composer
+
+      # 4️⃣ نصب پکیج‌های Composer با حافظه نامحدود
       - name: Install Composer dependencies
-        run: composer install --no-dev --optimize-autoloader
+        run: php -d memory_limit=-1 /usr/local/bin/composer install --no-dev --optimize-autoloader
 
-      # 4️⃣ نصب Node.js و build assets (اگر داری)
+      # 5️⃣ نصب Node.js و build frontend assets (اختیاری)
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20'
       - name: Build frontend assets
         run: |
           npm install
           npm run prod
 
-      # 5️⃣ ایجاد فایل env
+      # 6️⃣ ایجاد فایل .env
       - name: Prepare .env
         run: cp .env.example .env
 
-      # 6️⃣ تولید Laravel key
+      # 7️⃣ تولید Laravel APP_KEY
       - name: Generate app key
         run: php artisan key:generate
 
-      # 7️⃣ پاکسازی و cache کردن Laravel
+      # 8️⃣ پاکسازی و cache کردن Laravel
       - name: Optimize Laravel
         run: |
           php artisan config:cache
           php artisan route:cache
           php artisan view:cache
 
-      # 8️⃣ آپلود همه فایل‌ها روی هاست از طریق FTP
+      # 9️⃣ آپلود همه فایل‌ها روی هاست از طریق FTP
       - name: Deploy to FTP
         uses: SamKirkland/FTP-Deploy-Action@v4.3.4
         with:
