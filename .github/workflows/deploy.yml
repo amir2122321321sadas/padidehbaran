@@ -1,4 +1,4 @@
-name: Laravel FTP Deployment
+name: Laravel SFTP Deployment
 
 on:
   push:
@@ -54,22 +54,16 @@ jobs:
           php artisan route:cache
           php artisan view:cache
 
-      # 8️⃣ Deploy to FTP (بهینه شده)
-      - name: Deploy to FTP
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+      # 8️⃣ Deploy via SFTP
+      - name: Deploy to SFTP
+        uses: appleboy/scp-action@master
         with:
-          server: ftp.padidehbaran.ir
-          username: ${{ secrets.FTP_USERNAME }}
-          password: ${{ secrets.FTP_PASSWORD }}
-          local-dir: ./
-          server-dir: /padidehbaran/
-          security: loose
-          timeout: 1200   # ⚠️ 20 دقیقه
-          exclude: |
-            node_modules/
-            tests/
-            .github/
-            .git/
-            .gitignore
-            storage/logs/
-
+          host: ftp.padidehbaran.ir           # هاست SFTP
+          username: ${{ secrets.SFTP_USERNAME }}
+          password: ${{ secrets.SFTP_PASSWORD }}
+          port: 22                             # معمولاً 22 برای SFTP
+          source: "./"                         # کل پروژه آماده شده
+          target: "/padidehbaran/"             # مسیر روی هاست
+          rm: true                             # حذف فایل‌های قبلی قبل از آپلود
+          recursive: true                      # پوشه‌ها هم آپلود بشن
+          strip_components: 0
