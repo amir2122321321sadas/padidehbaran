@@ -77,3 +77,4 @@ jobs:
             **/.github/**
             **/.git/**
             **/vendor/**
+            **/storage/framework/views/**
