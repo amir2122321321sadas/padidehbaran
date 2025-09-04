@@ -33,7 +33,7 @@ jobs:
             echo ".env created from .env.example"
           else
             echo ".env already exists"
-
+          fi
 
         # 5️⃣ Generate APP_KEY
       - name: Generate APP_KEY
