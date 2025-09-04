@@ -34,7 +34,8 @@ jobs:
           else
             echo ".env already exists"
 
-      # 5️⃣ Generate APP_KEY
+
+        # 5️⃣ Generate APP_KEY
       - name: Generate APP_KEY
         run: php artisan key:generate --force
 
