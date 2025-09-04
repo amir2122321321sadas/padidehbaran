@@ -65,4 +65,4 @@ jobs:
           password: ${{ secrets.FTP_PASSWORD }}
           local-dir: ./           # کل پروژه لاراول آماده شده
           server-dir: /padidehbaran
-          security: insecure      # ⚠️ جایگزین git-ftp-args --insecure
+          security: loose
