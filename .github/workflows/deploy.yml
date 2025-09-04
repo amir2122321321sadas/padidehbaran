@@ -61,10 +61,10 @@ jobs:
           server: ftp.padidehbaran.ir
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-          local-dir: ./           # کل پروژه آماده شده
+          local-dir: ./
           server-dir: /padidehbaran/
           security: loose
-          timeout: 900            # افزایش Timeout به 15 دقیقه
+          timeout: 1200   # ⚠️ 20 دقیقه
           exclude: |
             node_modules/
             tests/
@@ -72,3 +72,4 @@ jobs:
             .git/
             .gitignore
             storage/logs/
+
