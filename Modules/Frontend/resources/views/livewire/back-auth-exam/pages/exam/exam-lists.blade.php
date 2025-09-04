@@ -21,7 +21,7 @@
                             <x-frontend::logo/>
                             <span class="flex flex-col items-start">
                                     <span class="font-semibold text-sm text-muted">آکــــادمـــی</span>
-                                    <x-frontend::nameweb/>
+                                    <x-frontend::name-web/>
                                 </span>
                         </a>
                     </div>
@@ -76,7 +76,7 @@
                         <x-frontend::logo/>
                         <span class="flex flex-col items-start">
                                 <span class="font-semibold text-sm text-muted">آکــــادمـــی</span>
-                                  <x-frontend::namewebmobile/>
+                                  <x-frontend::name-web-mobile/>
                             </span>
                     </a>
 

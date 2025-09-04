@@ -2,7 +2,7 @@
     <title>{{ $title ?? 'Page Title' }}</title>
 @endsection
 <div class="min-h-screen flex items-center justify-center p-5 h-full">
-    <x-frontend::backgroundloginregisterform/>
+    <x-frontend::background-login-register-form />
     <div class="w-full max-w-sm space-y-5" style="z-index: 2">
         <div class="bg-gradient-to-b from-secondary to-background rounded-3xl space-y-5 px-5 pb-5">
             <div class="bg-background rounded-b-3xl space-y-2 p-5">
@@ -10,7 +10,7 @@
                     <x-frontend::logo/>
                     <span class="flex flex-col items-start">
                             <span class="font-semibold text-sm text-muted">آکــــادمـــی</span>
-                            <x-frontend::nameweb/>
+                            <x-frontend::name-web/>
                         </span>
                 </a>
             </div>

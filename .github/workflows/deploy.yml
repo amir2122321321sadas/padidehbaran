@@ -1,4 +1,4 @@
-name: Laravel FTPS Minimal Deploy
+name: Laravel Minimal FTPS Deploy
 
 on:
   push:
@@ -35,24 +35,23 @@ jobs:
       - name: Copy .env
         run: cp .env.example .env || echo ".env already exists"
 
-      # 6️⃣ Deploy vendor folder via FTPS
-      - name: Deploy vendor to FTPS
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
-        with:
-          server: ftp.padidehbaran.ir
-          username: ${{ secrets.FTP_USERNAME }}
-          password: ${{ secrets.FTP_PASSWORD }}
-          port: 21
-          protocol: ftps
-          local-dir: ./vendor/
-          server-dir: /vendor/
-          security: loose
-          timeout: 1800000
+      # 6️⃣ Generate Laravel app key
+      - name: Generate App Key
+        run: php artisan key:generate --force
 
+      - name: Storage Link
+        run: |
+          php artisan storage:link
 
+      # 7️⃣ Optimize Laravel
+      - name: Optimize Laravel
+        run: |
+          php artisan config:cache
+          php artisan route:cache
+          php artisan view:cache
 
-      # 7️⃣ Deploy composer.json, composer.lock and .env separately
-      - name: Deploy composer.json, composer.lock and .env
+      # 8️⃣ Deploy only essential files to FTPS
+      - name: Deploy essential files to FTPS
         uses: SamKirkland/FTP-Deploy-Action@v4.3.4
         with:
           server: ftp.padidehbaran.ir
@@ -61,7 +60,7 @@ jobs:
           port: 21
           protocol: ftps
           local-dir: ./
-          server-dir: /
+          server-dir: /padidehbaran/
           security: loose
           timeout: 1800000
           exclude: |
