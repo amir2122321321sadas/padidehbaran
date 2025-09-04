@@ -31,7 +31,7 @@ jobs:
       - name: Install Composer dependencies
         run: php -d memory_limit=-1 /usr/local/bin/composer install --no-dev --optimize-autoloader
 
-      # 5️⃣ نصب Node.js و build frontend assets (اختیاری)
+      # 5️⃣ نصب Node.js و build frontend assets
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
@@ -63,6 +63,13 @@ jobs:
           server: ftp.padidehbaran.ir
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-          local-dir: ./           # کل پروژه لاراول آماده شده
+          local-dir: ./
           server-dir: /padidehbaran/
           security: loose
+          timeout: 600          # ⚠️ افزایش timeout به ۱۰ دقیقه
+          exclude: |
+            node_modules/
+            tests/
+            .github/
+            .git/
+            .gitignore
