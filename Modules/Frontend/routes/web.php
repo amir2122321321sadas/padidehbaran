@@ -76,7 +76,6 @@ Route::get('/clear-cache', function() {
     Artisan::call('config:clear');
     Artisan::call('route:clear');
     Artisan::call('optimize:clear');
-    Artisan::call('livewire:discover');
 
     return 'Cache cleared successfully!';
 });
