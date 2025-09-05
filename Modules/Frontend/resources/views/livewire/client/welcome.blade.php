@@ -4,22 +4,22 @@
         <div class="max-w-7xl space-y-14 px-4 mx-auto">
 
             <!-- slider -->
-            <livewire:frontend::client.items.banner.banner-base :$mainBanners  wire:key="banner-{{ now() }}"/>
+            <livewire:frontend.client.items.banner.banner-base :$mainBanners  wire:key="banner-{{ now() }}"/>
             <!-- end slider -->
 
 
             <!-- features -->
-            <livewire:frontend::client.items.feature.feature-base :$changerItems  wire:key="feature-{{ now() }}"/>
+            <livewire:frontend.client.items.feature.feature-base :$changerItems  wire:key="feature-{{ now() }}"/>
             <!-- end features -->
 
 
             <!-- latest-courses -->
-            <livewire:frontend::client.items.course.course-base/>
+            <livewire:frontend.client.items.course.course-base/>
             <!-- end latest-courses -->
 
 
             <!-- counseling -->
-            <livewire:frontend::client.items.counseling.counseling-base/>
+            <livewire:frontend.client.items.counseling.counseling-base/>
             <!-- end counseling -->
 
         </div>
@@ -27,7 +27,7 @@
 
 
         <!-- intro -->
-        <livewire:frontend::client.items.intro.intro-base/>
+        <livewire:frontend.client.items.intro.intro-base/>
         <!-- end intro -->
 
     </div>

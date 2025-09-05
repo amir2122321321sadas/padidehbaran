@@ -10,10 +10,7 @@ class BannerBase extends Component
     #[Reactive]
     public $mainBanners;
 
-    public function boot()
-    {
-        dd('je;;sdfsdsa');
-    }
+
     public function mount($mainBanners)
     {
         $this->mainBanners = $mainBanners;
