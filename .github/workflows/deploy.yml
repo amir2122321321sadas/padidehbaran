@@ -70,7 +70,6 @@ jobs:
             **/bootstrap/**
             **/database/**
             **/node_modules/**
-            **/resources/**
             **/routes/**
             **/tests/**
             **/.github/**
