@@ -17,6 +17,8 @@ class BannerBase extends Component
 
     public function render()
     {
-        return view('frontend::livewire.client.items.banner.banner-base');
+        return view('frontend::livewire.client.items.banner.banner-base',[
+            'mainBanners' => $this->mainBanners,
+        ]);
     }
 }
