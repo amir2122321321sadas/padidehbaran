@@ -29,6 +29,7 @@ class FrontendServiceProvider extends ServiceProvider
         $this->registerConfig();
         $this->registerViews();
         $this->loadMigrationsFrom(module_path($this->name, 'database/migrations'));
+        Livewire::component('frontend.client.items.banner.banner-base', BannerBase::class);
     }
 
     /**
