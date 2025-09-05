@@ -40,7 +40,10 @@ return [
 
         'public' => [
             'driver' => 'local',
-            'root' => storage_path('app/public'),
+
+//      برای ذخیره سازی در خود پوشه storage در بیرون از public و این حالت اصلی هست*** ولی به دلیل نداشتن symbolink مجبور به استفاده از این هستیم     'root' => storage_path('app/public'),
+
+            'root' => public_path('storage'),
             'url' => env('APP_URL').'/storage',
             'visibility' => 'public',
             'throw' => false,
