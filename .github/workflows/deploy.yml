@@ -50,7 +50,6 @@ jobs:
         run: |
           php artisan view:clear
           php artisan cache:clear
-          php artisan optimize:clear
           php artisan livewire:discover
 
       # 8️⃣ Deploy to FTP
