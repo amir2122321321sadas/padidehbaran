@@ -71,3 +71,4 @@ jobs:
             **/.git/**
             **/vendor/**
             **/storage/framework/views/**
+            storage/app/public/**
