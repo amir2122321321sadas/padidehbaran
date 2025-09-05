@@ -45,7 +45,12 @@ jobs:
           mkdir -p public/storage
           rsync -a storage/app/public/ public/storage/
 
-
+      # 7️⃣ Optimize Laravel
+      - name: Optimize Laravel
+        run: |
+          php artisan config:cache
+          php artisan route:cache
+          php artisan view:cache
 
       # 8️⃣ Deploy to FTP
       - name: Deploy to FTP
@@ -62,7 +67,6 @@ jobs:
           timeout: 300000
           exclude: |
             app/**
-            storage/app/public/**
             **/bootstrap/**
             **/database/**
             **/node_modules/**
@@ -72,4 +76,3 @@ jobs:
             **/.git/**
             **/vendor/**
             **/storage/framework/views/**
-
