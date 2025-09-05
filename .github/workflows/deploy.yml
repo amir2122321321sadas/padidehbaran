@@ -48,6 +48,12 @@ jobs:
       # 7️⃣ Optimize Laravel
       - name: Optimize Laravel
         run: |
+          php artisan view:clear
+          php artisan cache:clear
+          php artisan config:clear
+          php artisan route:clear
+          php artisan optimize:clear
+          php artisan livewire:discover
           php artisan config:cache
           php artisan route:cache
           php artisan view:cache
