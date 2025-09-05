@@ -68,7 +68,6 @@ jobs:
           exclude: |
             app/**
             **/bootstrap/**
-            **/database/**
             **/node_modules/**
             **/routes/**
             **/tests/**

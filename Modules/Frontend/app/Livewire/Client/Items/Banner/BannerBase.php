@@ -9,10 +9,7 @@ class BannerBase extends Component
     public $mainBanners;
 
 
-    public function mount($mainBanners)
-    {
-        $this->mainBanners = $mainBanners;
-    }
+
 
 
     public function render()
