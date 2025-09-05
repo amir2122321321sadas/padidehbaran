@@ -11,7 +11,6 @@ class BannerBase extends Component
 
     public function mount($mainBanners)
     {
-        dd($mainBanners);
         $this->mainBanners = $mainBanners;
     }
 
