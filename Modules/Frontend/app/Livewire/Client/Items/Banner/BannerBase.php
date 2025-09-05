@@ -2,10 +2,12 @@
 
 namespace Modules\Frontend\Livewire\Client\Items\Banner;
 
+use Livewire\Attributes\Reactive;
 use Livewire\Component;
 
 class BannerBase extends Component
 {
+    #[Reactive]
     public $mainBanners;
 
 
