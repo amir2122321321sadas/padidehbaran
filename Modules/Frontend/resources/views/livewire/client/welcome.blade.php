@@ -4,12 +4,12 @@
         <div class="max-w-7xl space-y-14 px-4 mx-auto">
 
             <!-- slider -->
-            <livewire:frontend::client.items.banner.banner-base :$mainBanners/>
+            <livewire:frontend::client.items.banner.banner-base :main-banners="$mainBanners" />
             <!-- end slider -->
 
 
             <!-- features -->
-            <livewire:frontend::client.items.feature.feature-base :$changerItems/>
+            <livewire:frontend::client.items.feature.feature-base :changer-items="$changerItems"/>
             <!-- end features -->
 
 
