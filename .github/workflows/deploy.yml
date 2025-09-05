@@ -48,9 +48,10 @@ jobs:
       # 7️⃣ Optimize Laravel
       - name: Optimize Laravel
         run: |
-          php artisan config:cache
-          php artisan route:cache
-          php artisan view:cache
+          php artisan view:clear
+          php artisan cache:clear
+          php artisan optimize:clear
+          php artisan livewire:discover
 
       # 8️⃣ Deploy to FTP
       - name: Deploy to FTP
@@ -67,10 +68,12 @@ jobs:
           timeout: 300000
           exclude: |
             app/**
-            storage/app/public/**
+            **/bootstrap/**
+            **/database/**
             **/node_modules/**
+            **/routes/**
             **/tests/**
             **/.github/**
             **/.git/**
             **/vendor/**
-
+            **/storage/framework/views/**
