@@ -69,7 +69,6 @@ jobs:
             app/**
             **/bootstrap/**
             **/node_modules/**
-            **/routes/**
             **/tests/**
             **/.github/**
             **/.git/**

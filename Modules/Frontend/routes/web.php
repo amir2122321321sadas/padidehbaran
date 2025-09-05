@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\CourseChapterFile;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Storage;
@@ -68,7 +69,17 @@ Route::get('/exam/{exam:slug}' , ExamFormForStart::class)->name('exam.start')->m
 Route::get('/user-exam/{userExam:token}/exam/{exam:slug}' ,ExamQuestionForms::class)->name('exam-questions')->middleware(['guest']);
 
 
+// routes/web.php
+Route::get('/clear-cache', function() {
+    Artisan::call('view:clear');
+    Artisan::call('cache:clear');
+    Artisan::call('config:clear');
+    Artisan::call('route:clear');
+    Artisan::call('optimize:clear');
+    Artisan::call('livewire:discover');
 
+    return 'Cache cleared successfully!';
+});
 
 
 
