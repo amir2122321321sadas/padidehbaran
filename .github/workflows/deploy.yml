@@ -45,12 +45,7 @@ jobs:
           mkdir -p public/storage
           rsync -a storage/app/public/ public/storage/
 
-      # 7️⃣ Optimize Laravel
-      - name: Optimize Laravel
-        run: |
-          php artisan view:clear
-          php artisan cache:clear
-          php artisan livewire:discover
+
 
       # 8️⃣ Deploy to FTP
       - name: Deploy to FTP
