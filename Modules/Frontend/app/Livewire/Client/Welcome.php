@@ -23,8 +23,10 @@ class Welcome extends Component
     #[Title('صفحه اصلی')]
     public function render()
     {
-        return view('frontend::livewire.client.welcome');
+        return view('frontend::livewire.client.welcome', [
+            'mainBanners' => $this->mainBanners,
+            'changerItems' => $this->changerItems,
+        ]);
     }
-
 
 }
