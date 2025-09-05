@@ -4,12 +4,12 @@
         <div class="max-w-7xl space-y-14 px-4 mx-auto">
 
             <!-- slider -->
-            <livewire:frontend::client.items.banner.banner-base :$mainBanners/>
+            <livewire:frontend::client.items.banner.banner-base :$mainBanners  wire:key="banner-{{ now() }}"/>
             <!-- end slider -->
 
 
             <!-- features -->
-            <livewire:frontend::client.items.feature.feature-base :$changerItems/>
+            <livewire:frontend::client.items.feature.feature-base :$changerItems  wire:key="feature-{{ now() }}"/>
             <!-- end features -->
 
 
