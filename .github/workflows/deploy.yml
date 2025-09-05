@@ -67,6 +67,7 @@ jobs:
           timeout: 300000
           exclude: |
             app/**
+            storage/app/public/**
             **/node_modules/**
             **/tests/**
             **/.github/**
