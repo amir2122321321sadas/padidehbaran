@@ -21,6 +21,7 @@ return Application::configure(basePath: dirname(__DIR__))
             'canWatchCourse' => CanWatchCourse::class,
             'checkerInsurancePolicyAndExcel' => checkerAndChangerActiveProfileUser::class,
             'check.insurance' => \App\Http\Middleware\CheckUserLastInsurance::class,
+            'checkRepairMode' => \App\Http\Middleware\isRepairMode::class,
             // Add more aliases as needed
         ]);
     })

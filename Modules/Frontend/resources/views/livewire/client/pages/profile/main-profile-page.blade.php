@@ -44,8 +44,8 @@
 
 
     <div class="bg-white rounded-2xl shadow p-4">
-        <h2 class="text-lg font-semibold mb-4">درآمد ۱۲ ماه گذشته</h2>
-        <div id="incomeLineChart"></div>
+        <h2 class="text-lg font-semibold mb-4 text-foreground">درآمد ۱۲ ماه گذشته</h2>
+        <div id="incomeLineChart" class="text-foreground"></div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>

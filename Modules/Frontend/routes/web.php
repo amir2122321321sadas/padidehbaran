@@ -32,7 +32,7 @@ use Modules\Frontend\Livewire\Client\Pages\Term\TermPage;
 use Modules\Frontend\Livewire\Client\Welcome;
 
 
-Route::middleware(['authCheck' , 'changerLevel' , 'checkerInsurancePolicyAndExcel' ,'check.insurance'])->group(function () {
+Route::middleware(['authCheck' , 'changerLevel' , 'checkerInsurancePolicyAndExcel' ,'check.insurance' , 'checkRepairMode'])->group(function () {
     Route::get('/', Welcome::class)->name('home');
     Route::get('/contactUs', ContactUsPage::class)->name('contactUs');
     Route::get('/faq', FaqPage::class)->name('faq');

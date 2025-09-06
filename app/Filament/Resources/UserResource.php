@@ -22,6 +22,7 @@ use Filament\Tables\Table;
 use HayderHatem\FilamentExcelImport\Actions\FullImportAction;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 use Maatwebsite\Excel\Facades\Excel;
 
@@ -86,11 +87,7 @@ class UserResource extends Resource
                         Forms\Components\DateTimePicker::make('email_verified_at')
                             ->label('تاریخ تایید ایمیل')
                             ->helperText('تاریخی که ایمیل کاربر تایید شده است (اختیاری)'),
-                        Forms\Components\TextInput::make('password')
-                            ->label('رمز عبور')
-                            ->helperText('رمز عبور جدید کاربر را وارد کنید')
-                            ->password()
-                            ->required(),
+
                         Forms\Components\TextInput::make('identification_code')
                             ->label('کد معرف')
                             ->helperText('کد معرف کاربر را وارد کنید')
@@ -132,7 +129,8 @@ class UserResource extends Resource
                                     ->numeric()
                                     ->required(),
                                 Forms\Components\DateTimePicker::make('created_at')
-                                    ->label('تاریخ ایجاد')
+                                    ->label('تاریخ')
+                                    ->jalali()
                                     ->required(),
                             ])
                             ->columns(2)
