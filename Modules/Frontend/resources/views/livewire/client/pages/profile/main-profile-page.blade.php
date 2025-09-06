@@ -98,26 +98,26 @@
     <br>
     <br>
 
-    <livewire:frontend::client.pages.profile.courses-profile-page/>
+    <livewire:frontend.client.pages.profile.courses-profile-page/>
 
     <br>
     <hr>
     <br>
-    <livewire:frontend::client.pages.profile.insurance-policies-profile-page/>
-
-    <br>
-    <hr>
-    <br>
-
-
-    <livewire:frontend::client.pages.profile.ticket-list-profile-page/>
+    <livewire:frontend.client.pages.profile.insurance-policies-profile-page/>
 
     <br>
     <hr>
     <br>
 
 
-    <livewire:frontend::client.pages.profile.notification-profile-page/>
+    <livewire:frontend.client.pages.profile.ticket-list-profile-page/>
+
+    <br>
+    <hr>
+    <br>
+
+
+    <livewire:frontend.client.pages.profile.notification-profile-page/>
 
 
 

@@ -142,19 +142,19 @@
                 <div class="bg-secondary rounded-3xl p-5">
 
                     <!-- tabs:contents:tabOne -->
-                    <livewire:frontend::client.items.profile.tab-one-profile-form />
+                    <livewire:frontend.client.items.profile.tab-one-profile-form />
                     <!-- end tabs:contents:tabOne -->
 
 
 
                     <!-- tabs:contents:tabTwo -->
-                    <livewire:frontend::client.items.profile.tab-two-profile-form />
+                    <livewire:frontend.client.items.profile.tab-two-profile-form />
                     <!-- end tabs:contents:tabTwo -->
 
 
 
                     <!-- tabs:contents:tabTwo -->
-                    <livewire:frontend::client.items.profile.tab-tree-profile-form />
+                    <livewire:frontend.client.items.profile.tab-tree-profile-form />
                     <!-- end tabs:contents:tabTwo -->
 
 

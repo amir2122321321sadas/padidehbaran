@@ -12,7 +12,7 @@
             <!-- end section:title -->
 
 
-            <livewire:frontend::client.items.profile.data.create-insurance-policies-profile />
+            <livewire:frontend.client.items.profile.data.create-insurance-policies-profile />
 
 
         </div>

@@ -76,7 +76,7 @@
                                                             <span
                                                                 class="line-clamp-1 font-semibold text-xs text-muted">مدرس
                                                                 دوره:</span>
-                            <a href="./lecturer.html"
+                            <a href="#"
                                class="line-clamp-1 font-bold text-xs text-foreground hover:text-primary">{{$course->teacher->userInformation->first_name .' '. $course->teacher->userInformation->last_name ?? 'نام وارد نشده!'}}</a>
                         </div>
                     </div>

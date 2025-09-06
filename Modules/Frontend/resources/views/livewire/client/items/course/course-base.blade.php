@@ -36,7 +36,7 @@
 
             @foreach($courses as $course)
 
-                <livewire:frontend::client.items.course.course-base.course-items :$course/>
+                <livewire:frontend.client.items.course.course-base.course-items :$course/>
 
             @endforeach
 

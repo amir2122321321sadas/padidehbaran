@@ -101,7 +101,7 @@
                     <!-- end contact-us:title -->
 
                     <!-- contact-us:form -->
-                    <livewire:frontend::client.pages.contact-us.contact-us-page-form />
+                    <livewire:frontend.client.pages.contact-us.contact-us-page-form />
                     <!-- end contact-us:form -->
                 </div>
                 <!-- end contact-us:form:wrapper -->

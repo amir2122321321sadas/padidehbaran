@@ -101,7 +101,7 @@
                             <div class="swiper col3-swiper-slider">
                                 <div class="swiper-wrapper">
                                     @foreach($courses as $course)
-                                        <livewire:frontend::client.items.profile.courses-profile-items :$course/>
+                                        <livewire:frontend.client.items.profile.courses-profile-items :$course/>
                                     @endforeach
                                 </div>
 
