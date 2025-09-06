@@ -41,6 +41,8 @@
                                                             </div><!-- end alert:actions -->
                                                         </div><!-- end alert:content -->
                                                     </div><!-- end alert -->--}}
+
+
     <div class="bg-white rounded-2xl shadow p-4">
         <h2 class="text-lg font-semibold mb-4">درآمد ۱۲ ماه گذشته</h2>
         <div id="incomeLineChart"></div>
@@ -53,7 +55,7 @@
                 chart: {
                     type: 'line',
                     height: 350,
-                    toolbar: { show: truew }
+                    toolbar: { show: true }
                 },
                 series: [{
                     name: 'درآمد',

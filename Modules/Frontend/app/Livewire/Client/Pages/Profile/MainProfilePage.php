@@ -5,6 +5,7 @@ namespace Modules\Frontend\Livewire\Client\Pages\Profile;
 use Illuminate\Support\Facades\DB;
 use Livewire\Attributes\Title;
 use Livewire\Component;
+use Morilog\Jalali\Jalalian;
 
 class MainProfilePage extends Component
 {
@@ -17,27 +18,31 @@ class MainProfilePage extends Component
     public function mount()
     {
         $user = auth()->user();
+        $userId = auth()->id();
 
-        $userId = auth()->id(); // یا هر user_id که میخوای
-
-        $this->incomes = DB::table('income_users')
-            ->selectRaw('MONTH(created_at) as month, SUM(income) as total_income')
+        $allIncomes = DB::table('income_users')
             ->where('user_id', $userId)
-            ->whereYear('created_at', now()->year)
-            ->groupBy('month')
-            ->pluck('total_income', 'month');
+            ->whereYear('created_at', now()->year) // فیلتر اولیه بر اساس میلادی
+            ->get(['income', 'created_at']);
 
-        $this->monthlyIncome = [];
-        for ($i = 1; $i <= 12; $i++) {
-            $this->monthlyIncome[] = (int) ($this->incomes[$i] ?? 0); // تبدیل به آرایه ایندکسی
+        // مقداردهی اولیه ۱۲ ماه شمسی (فروردین تا اسفند)
+        $monthlyIncomeMap = array_fill(1, 12, 0);
+
+        foreach ($allIncomes as $income) {
+            $jalali = Jalalian::fromDateTime($income->created_at);
+            $month = $jalali->getMonth(); // مثلاً 5 => مرداد
+            $monthlyIncomeMap[$month] += $income->income;
         }
 
+        // تبدیل به آرایه ایندکسی برای نمودار
+        $this->monthlyIncome = [];
+        for ($i = 1; $i <= 12; $i++) {
+            $this->monthlyIncome[] = (int) ($monthlyIncomeMap[$i] ?? 0);
+        }
 
-        //با استفاده از level_id level رو پیدا می کنه و بر اساس اون level خود کاربر course_id هایی که برای اون سطح از طریق پنل ادمین انتخاب شده اند برگردانده میشوند!
+        // سایر داده‌ها
         $this->courses = $user->activeCoursesFromLevel();
-
     }
-
 
     #[Title('پروفایل کاربر')]
     public function render()
