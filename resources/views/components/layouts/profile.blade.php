@@ -30,7 +30,7 @@
                                 </div>
                                 <div class="flex flex-col items-start space-y-1">
                                     <span class="text-xs text-muted">خوش آمدید</span>
-                                    <span class="line-clamp-1 font-semibold text-sm text-foreground cursor-default"> <x-frontend::userinformation.fullnameusertext/></span>
+                                    <span class="line-clamp-1 font-semibold text-sm text-foreground cursor-default"> <x-frontend::user-information.full-name-user-text/></span>
                                 </div>
                             </div>
                         </div>
