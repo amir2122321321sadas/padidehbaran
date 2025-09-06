@@ -8,6 +8,7 @@ use Livewire\Livewire;
 use Modules\Frontend\Livewire\Client\Items\Banner\BannerBase;
 use Modules\Frontend\Livewire\Client\Items\Banner\BannerBase\BannerItems;
 use Modules\Frontend\Livewire\Client\Items\Feature\FeatureBase;
+use Modules\Frontend\Livewire\Client\Items\Feature\FeatureBase\FeatureItems;
 use Nwidart\Modules\Traits\PathNamespace;
 use RecursiveDirectoryIterator;
 use RecursiveIteratorIterator;
@@ -34,6 +35,9 @@ class FrontendServiceProvider extends ServiceProvider
         Livewire::component('frontend.client.items.banner.banner-base', BannerBase::class);
         Livewire::component('frontend.client.items.banner.banner-base.banner-items', BannerItems::class);
         Livewire::component('frontend.client.items.feature.feature-base', FeatureBase::class);
+        Livewire::component('frontend.client.items.feature.feature-base.feature-items', FeatureItems::class);
+
+
 
     }
 
