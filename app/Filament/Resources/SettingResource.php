@@ -89,7 +89,6 @@ class SettingResource extends Resource
                         Forms\Components\TextInput::make('phone')
                             ->label('شماره تماس')
                             ->helperText('شماره تماس وبسایت را وارد کنید')
-                            ->required()
                             ->numeric()
                             ->columnSpanFull(),
                     ]),

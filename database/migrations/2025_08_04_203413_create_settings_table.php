@@ -21,7 +21,7 @@ return new class extends Migration
             $table->boolean('is_repair_mode');
             $table->dateTime('start_work_time');
             $table->dateTime('end_work_time');
-            $table->text('phone');
+            $table->text('phone')->nullable();
             $table->text('favicon');
             $table->text('background_login_page');
             $table->text('simple_logo');
