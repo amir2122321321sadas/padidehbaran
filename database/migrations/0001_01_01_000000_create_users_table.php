@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->text('identification_code')->unique()->comment('کد معرف خود این کاربر برای اشتراک گذاری');
+            $table->string('identification_code')->unique()->comment('کد معرف خود این کاربر برای اشتراک گذاری');
             $table->string('level_id')->nullable();
             $table->rememberToken();
             $table->timestamps();

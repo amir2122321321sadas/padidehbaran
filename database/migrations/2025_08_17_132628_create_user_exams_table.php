@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('email')->nullable();
             $table->foreignId('exam_id')->constrained('exams')->onDelete('cascade');
             $table->float('score')->nullable();
-            $table->text('token')->nullable()->unique();
+            $table->string('token')->nullable()->unique();
             $table->string('test_check_id')->nullable();
             $table->timestamps();
         });
