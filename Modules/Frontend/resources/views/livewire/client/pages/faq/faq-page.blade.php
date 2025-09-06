@@ -22,7 +22,7 @@
             <!-- faq:questions -->
             <div class="lg:max-w-3xl divide-y divide-border mx-auto">
                 @foreach($faqs as $faq)
-                    <livewire:frontend.client.pages.faq.faq-items :$faq/>
+                    <livewire:client.pages.faq.faq-items :$faq/>
                 @endforeach
 
 

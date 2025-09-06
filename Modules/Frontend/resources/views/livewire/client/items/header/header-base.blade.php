@@ -2,12 +2,12 @@
 
 
     {{--header alert inActive your profile--}}
-    <livewire:frontend.client.items.alert.alert-in-active-your-profile :$activeUser/>
+    <livewire:client.items.alert.alert-in-active-your-profile :$activeUser/>
 
 
         @if($alert)
         <!-- notification-item -->
-            <livewire:frontend.client.items.alert.change-level-user-alert :$alert/>
+            <livewire:client.items.alert.change-level-user-alert :$alert/>
         <!-- end notification-item -->
         @endif
 
@@ -48,7 +48,7 @@
 
 
 
-                            <livewire:frontend.client.items.menu.menu-base.menu-items-category />
+                            <livewire:client.items.menu.menu-base.menu-items-category />
 
 
 
@@ -133,7 +133,7 @@
                         <div class="absolute top-full left-0 pt-3" x-show="isOpen"
                              x-on:click.outside="isOpen = false">
 
-                            <livewire:frontend.client.items.menu.menu-base.menu-items-profile-slider />
+                            <livewire:client.items.menu.menu-base.menu-items-profile-slider />
 
                         </div>
                     </div>
@@ -152,7 +152,7 @@
 
 
         {{--start Menu component items link--}}
-        <livewire:frontend.client.items.menu.menu-base/>
+        <livewire:client.items.menu.menu-base/>
         {{--end Menu component items link--}}
 
 
@@ -212,7 +212,7 @@
                 <div class="h-px bg-border"></div>
 
 
-                <livewire:frontend.client.items.menu.menu-base.menu-items-mobile/>
+                <livewire:client.items.menu.menu-base.menu-items-mobile/>
 
 
             </div><!-- end offcanvas:content -->

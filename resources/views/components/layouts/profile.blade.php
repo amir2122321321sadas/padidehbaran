@@ -11,7 +11,7 @@
 
     @auth
         <!-- header -->
-        <livewire:frontend.client.items.header.header-base />
+        <livewire:client.items.header.header-base />
         <!-- end header -->
     @endauth
 
@@ -37,7 +37,7 @@
                         <!-- end user:info -->
 
                         <!-- user:menus -->
-                        <livewire:frontend.client.items.menu-profile.menu-profile-base />
+                        <livewire:client.items.menu-profile.menu-profile-base />
                         <!-- end user:menus -->
 
 
@@ -49,7 +49,7 @@
 
 
                             <!-- statistics:items:wrapper -->
-                            <livewire:frontend.client.items.statistic.statistics-base />
+                            <livewire:client.items.statistic.statistics-base />
                             <!-- end statistics:wrapper -->
 
 
@@ -65,7 +65,7 @@
 
     @auth
         <!-- footer -->
-        <livewire:frontend.client.items.footer.footer-base />
+        <livewire:client.items.footer.footer-base />
         <!-- end footer -->
     @endauth
 </div>

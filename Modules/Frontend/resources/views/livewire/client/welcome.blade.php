@@ -9,17 +9,17 @@
 
 
             <!-- features -->
-            <livewire:frontend.client.items.feature.feature-base :$changerItems  wire:key="feature-{{ now() }}"/>
+            <livewire:client.items.feature.feature-base :$changerItems  wire:key="feature-{{ now() }}"/>
             <!-- end features -->
 
 
             <!-- latest-courses -->
-            <livewire:frontend.client.items.course.course-base/>
+            <livewire:client.items.course.course-base/>
             <!-- end latest-courses -->
 
 
             <!-- counseling -->
-            <livewire:frontend.client.items.counseling.counseling-base/>
+            <livewire:client.items.counseling.counseling-base/>
             <!-- end counseling -->
 
         </div>
@@ -27,7 +27,7 @@
 
 
         <!-- intro -->
-        <livewire:frontend.client.items.intro.intro-base/>
+        <livewire:client.items.intro.intro-base/>
         <!-- end intro -->
 
     </div>

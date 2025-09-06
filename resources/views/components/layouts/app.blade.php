@@ -13,7 +13,7 @@
 
         @auth
         <!-- header -->
-        <livewire:frontend.client.items.header.header-base />
+        <livewire:client.items.header.header-base />
         <!-- end header -->
         @endauth
 
@@ -23,7 +23,7 @@
 
             @auth
         <!-- footer -->
-        <livewire:frontend.client.items.footer.footer-base />
+        <livewire:client.items.footer.footer-base />
         <!-- end footer -->
             @endauth
     </div>

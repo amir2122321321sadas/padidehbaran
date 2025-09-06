@@ -180,7 +180,7 @@
 
                         @forelse($courses as $course)
                             <!-- course:card -->
-                            <livewire:frontend.client.items.course.courses-category-items :$course/>
+                            <livewire:client.items.course.courses-category-items :$course/>
                             <!-- end course:card -->
                         @empty
                             <!-- tabs:contents -->

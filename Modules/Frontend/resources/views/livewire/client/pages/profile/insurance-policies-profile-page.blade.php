@@ -25,7 +25,7 @@
             <!-- end section:title -->
 
             <!-- section:tickets:wrapper -->
-            <livewire:frontend.client.items.profile.data.insurance-policies-profile />
+            <livewire:client.items.profile.data.insurance-policies-profile />
             <!-- end section:tickets:wrapper -->
         </div>
     </div>
