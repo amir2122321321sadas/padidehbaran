@@ -55,7 +55,10 @@ class ExamQuestionForms extends Component
 
     public function updateRemaining()
     {
-        $endTime = Carbon::parse($this->startTime)->addMinutes($this->durationMinutes);
+        $duration = is_numeric($this->durationMinutes) ? (int) $this->durationMinutes : 0;
+
+        $endTime = Carbon::parse($this->startTime)->addMinutes($duration);
+
         $this->remainingSeconds = now()->diffInSeconds($endTime, false);
     }
 
