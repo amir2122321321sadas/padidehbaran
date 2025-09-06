@@ -4,7 +4,7 @@
         <div class="max-w-7xl space-y-14 px-4 mx-auto">
 
             <!-- slider -->
-            <livewire:frontend.client.items.banner.banner-base :$mainBanners  wire:key="banner-{{ now() }}"/>
+            <livewire:client.items.banner.banner-base :$mainBanners  wire:key="banner-{{ now() }}"/>
             <!-- end slider -->
 
 
