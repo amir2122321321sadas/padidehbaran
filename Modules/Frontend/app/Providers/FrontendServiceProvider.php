@@ -7,6 +7,7 @@ use Illuminate\Support\ServiceProvider;
 use Livewire\Livewire;
 use Modules\Frontend\Livewire\Client\Items\Banner\BannerBase;
 use Modules\Frontend\Livewire\Client\Items\Banner\BannerBase\BannerItems;
+use Modules\Frontend\Livewire\Client\Items\Feature\FeatureBase;
 use Nwidart\Modules\Traits\PathNamespace;
 use RecursiveDirectoryIterator;
 use RecursiveIteratorIterator;
@@ -32,6 +33,7 @@ class FrontendServiceProvider extends ServiceProvider
         $this->loadMigrationsFrom(module_path($this->name, 'database/migrations'));
         Livewire::component('frontend.client.items.banner.banner-base', BannerBase::class);
         Livewire::component('frontend.client.items.banner.banner-base.banner-items', BannerItems::class);
+        Livewire::component('frontend.client.items.feature.feature-base', FeatureBase::class);
 
     }
 
